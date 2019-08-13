@@ -1,0 +1,9 @@
+#quote-box {
+  width: 800px;
+  border: 2px solid lightblue;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  transform: translateY(200px);
+  padding: 10px;
+}
