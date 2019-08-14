@@ -53,12 +53,17 @@ class App extends React.Component {
 
   render() {
     const { quote, author } = this.state;
+    const twitterLink = `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${quote} - ${author}`
     return (
       <div id="quote-box">
-        <p id="text">{ quote }</p>
-        <p id="author">{ author }</p>
-        <button id="new-quote" onClick={ this.handleClick }>New Quote</button>
-        <button id="tweet-quote">Tweet Quote</button>
+        <blockquote class="blockquote text-center">
+          <p class="mb-0"  id="text">{ quote }</p>
+          <footer class="blockquote-footer"><cite title="Source Title" id="author">{ author }</cite></footer>
+        </blockquote>
+        <div className="button-list">
+          <button id="new-quote" onClick={ this.handleClick } className="btn btn-info">New Quote</button>
+          <a id="tweet-quote" className="btn btn-info" href={ twitterLink } >Tweet Quote</a>
+        </div>
       </div>
     );
   }
