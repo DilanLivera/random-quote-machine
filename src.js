@@ -27,11 +27,16 @@ class App extends React.Component {
     {
       quote: "I'm all in favor of keeping dangerous weapons out of the hands of fools. Let's start with typewriters.",
       author: "Frank Lloyd Wright"
-    }]
+    }],
+    colors: ["lightskyblue", "lightcoral", "lightcyan", 
+             "lightpink", "lightgreen", "lightsalmon", 
+             "lightseagreen", "lightsteelblue",  "lightyellow", 
+             "mediumturquoise", "mediumpurple", "tomato", 
+             "teal", "slateblue"]
   }
   constructor(props) {
     super(props);
-    this.state = this.getRandomQuote();
+    this.state = { ...this.getRandomQuote(), color: "lightgreen" };
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -44,7 +49,9 @@ class App extends React.Component {
 
   setNewQuote(){
     let randQuote = this.getRandomQuote();
-    this.setState(randQuote);
+    let { colors } = this.props;
+    let color = colors[Math.floor(Math.random() * colors.length)];
+    this.setState({ ...randQuote, color });
   }
 
   handleClick() {
@@ -52,13 +59,13 @@ class App extends React.Component {
   }
 
   render() {
-    const { quote, author } = this.state;
+    const { quote, author, color } = this.state;
     const twitterLink = `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${quote} - ${author}`
     return (
-      <div id="quote-box">
-        <blockquote class="blockquote text-center">
-          <p class="mb-0"  id="text">{ quote }</p>
-          <footer class="blockquote-footer"><cite title="Source Title" id="author">{ author }</cite></footer>
+      <div id="quote-box" style={{ color: `${color}`}}>
+        <blockquote className="blockquote text-center">
+          <p className="mb-0"  id="text">{ quote }</p>
+          <footer className="blockquote-footer"><cite title="Source Title" id="author">{ author }</cite></footer>
         </blockquote>
         <div className="button-list">
           <button id="new-quote" onClick={ this.handleClick } className="btn btn-info">New Quote</button>

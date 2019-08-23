@@ -6,6 +6,21 @@
   margin: 0 auto;
   transform: translateY(200px);
   padding: 10px;
+  border-radius: 10px;
+}
+
+.blockquote {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.blockquote > p {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.button-list {
+  margin-bottom: 20px;
 }
 
 #new-quot, #tweet-quote {
