@@ -28,11 +28,10 @@ class App extends React.Component {
       quote: "I'm all in favor of keeping dangerous weapons out of the hands of fools. Let's start with typewriters.",
       author: "Frank Lloyd Wright"
     }],
-    colors: ["lightskyblue", "lightcoral", "lightcyan", 
+    colors: ["lightskyblue", "lightcoral", "slateblue",
              "lightpink", "lightgreen", "lightsalmon", 
-             "lightseagreen", "lightsteelblue",  "lightyellow", 
-             "mediumturquoise", "mediumpurple", "tomato", 
-             "teal", "slateblue"]
+             "lightseagreen", "lightsteelblue", "mediumturquoise", 
+             "mediumpurple", "tomato", "teal"]
   }
   constructor(props) {
     super(props);
@@ -60,16 +59,32 @@ class App extends React.Component {
 
   render() {
     const { quote, author, color } = this.state;
-    const twitterLink = `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${quote} - ${author}`
+    const twitterLink = `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${quote} - ${author}`;
+    const styles = {
+      quoteAuthorColor: {
+        color
+      },
+      backgroundColor: {
+        backgroundColor: color,
+        borderColor: color
+      }
+    };
+
+    //set body background color
+    let body = document.querySelector("body");
+    // body.style.backgroundColor = color;
+    body.style.backgroundColor = color;
+    console.log(body.style.bgColor);
+
     return (
-      <div id="quote-box" style={{ color: `${color}`}}>
+      <div id="quote-box">
         <blockquote className="blockquote text-center">
-          <p className="mb-0"  id="text">{ quote }</p>
-          <footer className="blockquote-footer"><cite title="Source Title" id="author">{ author }</cite></footer>
+          <p className="mb-0"  id="text" style={ styles.quoteAuthorColor }>{ quote }</p>
+          <footer className="blockquote-footer" style={ styles.quoteAuthorColor }><cite title="Source Title" id="author" >{ author }</cite></footer>
         </blockquote>
         <div className="button-list">
-          <button id="new-quote" onClick={ this.handleClick } className="btn btn-info">New Quote</button>
-          <a id="tweet-quote" className="btn btn-info" href={ twitterLink } >Tweet Quote</a>
+          <button id="new-quote" style={ styles.backgroundColor } onClick={ this.handleClick } className="btn btn-info">New Quote</button>
+          <a id="tweet-quote" className="btn btn-info" href={ twitterLink } style={ styles.backgroundColor }>Tweet Quote</a>
         </div>
       </div>
     );
